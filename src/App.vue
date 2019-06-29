@@ -1,26 +1,30 @@
 <template>
   <div id="app">
-    <h1>{{nameApp}}</h1>
     <div class="container">
+      <h1 class="mb-3">{{nameApp}}</h1>
       <form v-on:submit.prevent="agregarTarea(tareas)">
-        <input type="text" v-model="tareas.titulo">
-        <button class="btn btn-primary" type="submit">Crear tarea</button>
+        <div class="input-group bg-dark mb-3 p-3">
+          <input class="form-control" type="text" v-model="tareas.titulo">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Crear tarea</button>
+          </div>
+        </div>
       </form>
       <table class="table">
         <thead>
           <tr>
-            <th>Hecho</th>
-            <th>Tarea</th>
-            <th>Eliminar</th>
+            <th class="task-done">Hecho</th>
+            <th class="task-title">Tarea</th>
+            <th class="task-delete">Eliminar</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="tarea in tareas" :class="{tareaHecha: tarea.hecho}">
-            <td>
-              <input type="checkbox" v-model="tarea.hecho">
+            <td class="text-center">
+              <input class="form-check-input" type="checkbox" v-model="tarea.hecho">
             </td>
             <td>{{tarea.titulo}}</td>
-            <td>
+            <td class="text-center">
               <button class="btn btn-danger" v-on:click="eliminarTarea(tarea)">X</button>
             </td>
           </tr>
@@ -31,8 +35,6 @@
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   name: "app",
   data: function() {
@@ -72,6 +74,10 @@ export default {
 <style lang="scss">
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 .table {
+  .task-done,
+  .task-delete {
+    width: 1%;
+  }
   .tareaHecha {
     background: #ccc;
   }
