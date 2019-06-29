@@ -4,7 +4,7 @@
       <h1 class="mb-3">{{nameApp}}</h1>
       <form v-on:submit.prevent="agregarTarea(tareas)">
         <div class="input-group bg-dark mb-3 p-3">
-          <input class="form-control" type="text" v-model="tareas.titulo">
+          <input class="form-control" type="text" v-model="tareas.titulo" />
           <div class="input-group-append">
             <button class="btn btn-primary" type="submit">Crear tarea</button>
           </div>
@@ -19,9 +19,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="tarea in tareas" :class="{tareaHecha: tarea.hecho}">
+          <tr v-for="tarea in tareas" :class="{tareaHecha: tarea.hecho}" v-bind:key="tarea.id">
             <td class="text-center">
-              <input class="form-check-input" type="checkbox" v-model="tarea.hecho">
+              <input class="form-check-input" type="checkbox" v-model="tarea.hecho" />
             </td>
             <td>{{tarea.titulo}}</td>
             <td class="text-center">
@@ -60,7 +60,7 @@ export default {
     eliminarTarea: function(tarea) {
       this.tareas.splice(this.tareas.indexOf(tarea), 1);
     },
-    agregarTarea: function(e) {
+    agregarTarea: function() {
       this.tareas.push({
         titulo: this.tareas.titulo,
         hecho: false
